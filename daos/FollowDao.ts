@@ -1,6 +1,6 @@
 import FollowDaoI from "../interfaces/FollowDaoI";
-import FollowModel from "../mongoose/follows/FollowModel";
 import Follow from "../models/follows/Follow";
+import FollowModel from "../mongoose/follows/FollowModel";
 export default class FollowDao implements FollowDaoI {
     private static followDao: FollowDao | null = null;
     public static getInstance = (): FollowDao => {
