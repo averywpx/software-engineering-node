@@ -18,7 +18,7 @@
   *     <li>DELETE /api/users/:uid/unlikes/:tid to record that a user
   *     no londer likes a tuit</li>
   * </ul>
-  * @property {LikeDao} likeDao Singleton DAO implementing likes CRUD operations
+  * @property {LikeDao} LikeDao Singleton DAO implementing likes CRUD operations
   * @property {LikeController} LikeController Singleton controller implementing
   * RESTful Web service API
   */
