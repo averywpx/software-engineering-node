@@ -10,14 +10,13 @@ import Message from "../models/messages/Message";
   * @class TuitController Implements RESTful Web service API for messages resource.
   * Defines the following HTTP endpoints:
   * <ul>
-  *     <li>GET /api/users/:uid/messages to retrieve all the tuits messaged by a user
+  *     <li>GET /api/users/:uid/received to retrieve all the messages received by a user
   *     </li>
-  *     <li>GET /api/tuits/:tid/messages to retrieve all users that messaged a tuit
+  *     <li>GET /api/tuits/:tid/sent to retrieve all messages that sent by a user
   *     </li>
-  *     <li>POST /api/users/:uid/messages/:tid to record that a user messages a tuit
+  *     <li>POST /api/users/:uid/messages/:uid2 to record that a user messages another user
   *     </li>
-  *     <li>DELETE /api/users/:uid/unmessages/:tid to record that a user
-  *     no londer messages a tuit</li>
+  *     <li>DELETE /api/messages/:mid to record that user dilet a message</li>
   * </ul>
   * @property {MessageDao} MessageDao Singleton DAO implementing messages CRUD operations
   * @property {MessageController} MessageController Singleton controller implementing
@@ -46,9 +45,9 @@ import Message from "../models/messages/Message";
      private constructor() {}
  
      /**
-      * Retrieves all users that messaged a tuit from the database
+      * Retrieves all messages that user received from the database
       * @param {Request} req Represents request from client, including the path
-      * parameter tid representing the messaged tuit
+      * parameter uid representing the user
       * @param {Response} res Represents response to client, including the
       * body formatted as JSON arrays containing the user objects
       */
@@ -57,11 +56,11 @@ import Message from "../models/messages/Message";
              .then(messages => res.json(messages));
  
      /**
-      * Retrieves all tuits messaged by a user from the database
+      * Retrieves all messages sent by a user from the database
       * @param {Request} req Represents request from client, including the path
-      * parameter uid representing the user messaged the tuits
+      * parameter uid representing the user who sent the message
       * @param {Response} res Represents response to client, including the
-      * body formatted as JSON arrays containing the tuit objects that were messaged
+      * body formatted as JSON arrays containing the user objects that were messaged
       */
       findAllMessagesSentByUser = (req: Request, res: Response) =>
          MessageController.messageDao.findAllMessagesSentByUser(req.params.uid)
@@ -69,8 +68,8 @@ import Message from "../models/messages/Message";
  
      /**
       * @param {Request} req Represents request from client, including the
-      * path parameters uid and tid representing the user that is liking the tuit
-      * and the tuit being messaged
+      * path parameters uids representing the user who sent messages and recieved
+      * messages.
       * @param {Response} res Represents response to client, including the
       * body formatted as JSON containing the new messages that was inserted in the
       * database
@@ -82,8 +81,7 @@ import Message from "../models/messages/Message";
  
      /**
       * @param {Request} req Represents request from client, including the
-      * path parameters uid and tid representing the user that is unliking
-      * the tuit and the tuit being unmessaged
+      * path parameters mid representing the message needed to be deleted
       * @param {Response} res Represents response to client, including status
       * on whether deleting the message was successful or not
       */

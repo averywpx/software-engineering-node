@@ -1,8 +1,8 @@
+/**
+ * @file Declares bookmark Data Access Object managing data storage
+ */
 import Bookmark from "../models/bookmarks/Bookmark";
 
-/**
- * @file Declares API for Bookmarks related data access object methods
- */
 export default interface BookmarkDaoI {
     findAllBookmarkedTuits (uid: string): Promise<Bookmark[]>;
     userUnbookmarksTuit (tid: string, uid: string): Promise<any>;

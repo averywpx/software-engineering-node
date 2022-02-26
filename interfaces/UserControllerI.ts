@@ -1,3 +1,6 @@
+/**
+ * @file Declares API for Users related data access object methods
+ */
 import {Request, Response} from "express";
 import User from "../models/users/User";
 

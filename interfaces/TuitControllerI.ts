@@ -1,3 +1,7 @@
+/**
+ * @file Declares API for Tuits related data access object methods
+ */
+
 import {Request, Response} from "express";
 import Tuit from "../models/tuits/Tuit";
 

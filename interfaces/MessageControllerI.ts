@@ -1,3 +1,6 @@
+/**
+ * @file Declares API for Message related data access object methods
+ */
 import {Request, Response} from "express";
 
 export default interface MessageControllerI {

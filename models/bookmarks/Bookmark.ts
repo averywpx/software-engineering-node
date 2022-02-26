@@ -8,8 +8,8 @@
  /**
   * @typedef Bookmark Represents bookmarks relationship between a user and a tuit,
   * as in a user bookmarks a tuit
-  * @property {Tuit} tuit Tuit being bookmarkd
-  * @property {User} bookmarkdBy User liking the tuit
+  * @property {Tuit} tuit Tuit being bookmarkdd
+  * @property {User} bookmarkdBy User bookmarks the tuit
   */
  
  export default interface Bookmark {

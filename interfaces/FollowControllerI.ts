@@ -1,3 +1,6 @@
+/**
+ * @file Declares API for Follow related data access object methods
+ */
 import {Request, Response} from "express";
 
 export default interface FollowControllerI {

@@ -9,14 +9,14 @@
   * @class FollowController Implements RESTful Web service API for follows resource.
   * Defines the following HTTP endpoints:
   * <ul>
-  *     <li>GET /api/users/:uid/follows to retrieve all the tuits followd by a user
+  *     <li>GET /api/users/:uid/following to retrieve all the users that the user is following
   *     </li>
-  *     <li>GET /api/tuits/:tid/follows to retrieve all users that followd a tuit
+  *     <li>GET /api/tuits/:uid/follower to retrieve all users that followed the user
   *     </li>
-  *     <li>POST /api/users/:uid/follows/:tid to record that a user follows a tuit
+  *     <li>POST /api/users/:uid/follows/:uid2 to record that a user follows another user
   *     </li>
-  *     <li>DELETE /api/users/:uid/unfollows/:tid to record that a user
-  *     no londer follows a tuit</li>
+  *     <li>DELETE /api/users/:uid/unfollows/:uid2 to record that a user
+  *     no londer follows another user</li>
   * </ul>
   * @property {FollowDao} FollowDao Singleton DAO implementing follows CRUD operations
   * @property {FollowController} FollowController Singleton controller implementing
@@ -29,7 +29,7 @@
       * Creates singleton controller instance
       * @param {Express} app Express instance to declare the RESTful Web service
       * API
-      * @return TuitController
+      * @return FollowController
       */
      public static getInstance = (app: Express): FollowController => {
          if(FollowController.followController === null) {
@@ -45,9 +45,9 @@
      private constructor() {}
  
      /**
-      * Retrieves all users that followd a tuit from the database
+      * Retrieves all users that the user is following from the database
       * @param {Request} req Represents request from client, including the path
-      * parameter tid representing the followd tuit
+      * parameter uid representing the user that is followed
       * @param {Response} res Represents response to client, including the
       * body formatted as JSON arrays containing the user objects
       */
@@ -56,11 +56,11 @@
              .then(follows => res.json(follows));
  
      /**
-      * Retrieves all tuits followd by a user from the database
+      * Retrieves all follower from the database
       * @param {Request} req Represents request from client, including the path
-      * parameter uid representing the user followd the tuits
+      * parameter uid representing the target user
       * @param {Response} res Represents response to client, including the
-      * body formatted as JSON arrays containing the tuit objects that were followd
+      * body formatted as JSON arrays containing the user
       */
       findAllFollower = (req: Request, res: Response) =>
          FollowController.followDao.findAllFollower(req.params.uid)
@@ -68,10 +68,10 @@
  
      /**
       * @param {Request} req Represents request from client, including the
-      * path parameters uid and tid representing the user that is liking the tuit
-      * and the tuit being followd
+      * path parameters uids representing the user that is following the other user
+      * and the user being followed
       * @param {Response} res Represents response to client, including the
-      * body formatted as JSON containing the new follows that was inserted in the
+      * body formatted as JSON containing the new follow object that was inserted in the
       * database
       */
       userFollowsUser = (req: Request, res: Response) =>
@@ -80,8 +80,8 @@
  
      /**
       * @param {Request} req Represents request from client, including the
-      * path parameters uid and tid representing the user that is unliking
-      * the tuit and the tuit being unfollowd
+      * path parameters uids representing the user that is unfollowing
+      * the other user and the other user that is unfollowed
       * @param {Response} res Represents response to client, including status
       * on whether deleting the follow was successful or not
       */

@@ -1,15 +1,15 @@
 /**
  * @file Declares Follow data type representing relationship between
- * users and tuits, as in user follows a tuit
+ * users and another user, as in user follows another user
  */
 
  import User from "../users/User";
  
  /**
-  * @typedef Follow Represents follows relationship between a user and a tuit,
-  * as in a user follows a tuit
-  * @property {User} user Tuit being followd
-  * @property {User} followdBy User liking the tuit
+  * @typedef Follow Represents follow relationship between a user and another user,
+  * as in a user follows another user
+  * @property {User} user User being followed
+  * @property {User} followdBy User who follows another user
   */
  
  export default interface Follow {
