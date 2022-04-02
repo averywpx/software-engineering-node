@@ -1,3 +1,6 @@
+/**
+ * @file Declares API for Dislikes related data access object methods
+ */
 import {Request, Response} from "express";
 
 export default interface DislikeControllerI {
